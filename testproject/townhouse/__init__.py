@@ -47,6 +47,7 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect,
         label="Как вы считаете, настоящая цена дома выше или ниже этого значения?"
     )
+    target = models.StringField()
 
 
 
@@ -87,6 +88,8 @@ class Survey2(Page):
                         target = person.hprice_a
         # target = player.get_others_in_subsession
         target = format(int(target), ',').replace(',', ' ').replace('.', ',')
+        if player.color == 'blue':
+            player.target = target
         return dict(
             target=target
         )
